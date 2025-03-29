@@ -2,17 +2,19 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var isToggleOn: Bool = false
-    @State var selection: String = "1" //未使用
+    @State var selection: String = "1"
+    @State private var volume: Double = 50.0
     
-    let options = [1, 2, 3, 4, 5] // Picker の選択肢を定義
     
-    @State private var selectedOption = 1 // 選択された Picker の値を保持
+    let options = [1, 2, 3, 4, 5]
+    
+    @State private var selectedOption = 1
     
     var body: some View {
         VStack {
             Text("Toggle is: \(isToggleOn ? "On" : "Off")")
                 .padding(.bottom)
-            
+            //toggleの機能
             VStack {
                 HStack {
                     Text("Status:")
@@ -25,11 +27,11 @@ struct ContentView: View {
                 }
                 .tint(.purple)
             }
-            Spacer()
+            .padding(.horizontal, 100)
             
             VStack(alignment: .leading) {
-                Text("Custom Style")
-                    .font(.headline)
+                
+                //Pickerの機能
                 Picker(
                     selection: $selectedOption,
                     label: Text("Custom Options")
@@ -40,11 +42,21 @@ struct ContentView: View {
                 }
                 .pickerStyle(.segmented)
                 
-                Spacer()
+                .padding(.horizontal, 100)
+                
+                Slider(value: $volume,
+                       in: 0...100,
+                       minimumValueLabel: Image(systemName: "speaker"),
+                       maximumValueLabel: Image(systemName: "speaker.wave.3"),
+                       label: {
+                    Text("Volume")
+                }
+                )
             }
             .padding(.horizontal, 100)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: .infinity)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemGray6))
     }
 }
