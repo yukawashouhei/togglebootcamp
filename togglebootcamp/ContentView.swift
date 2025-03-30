@@ -78,8 +78,8 @@ struct ContentView: View {
             .frame(maxWidth: .infinity)
             Spacer()
             
-            ZStack { // ZStack を VStack の中に移動
-                Color.red
+            ZStack {
+                backgroundColor
                     .edgesIgnoringSafeArea(.all)
                 
                 ColorPicker(
