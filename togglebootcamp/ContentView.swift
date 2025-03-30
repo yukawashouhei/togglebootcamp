@@ -85,8 +85,13 @@ struct ContentView: View {
                 ColorPicker(
                     "Select a color",
                     selection: $backgroundColor,
-                    supportsOpacity: true // supportsOpacity に引数を渡す
-                )
+                    supportsOpacity: true)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(30)
+                .foregroundColor(.black)
+                .font(.headline)
+                .padding(50)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
