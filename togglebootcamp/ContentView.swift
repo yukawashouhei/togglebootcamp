@@ -13,10 +13,13 @@ struct ContentView: View {
     @State private var volume: Double = 50.0
     @State private var selectedFlavor: Flavor = .chocolate
     @State private var backgroundColor: Color = .green
+    @State var selectedDate: Date = Date()
+    @State private var selectedOption = 1
     
     let options = [1, 2, 3, 4, 5]
     
-    @State private var selectedOption = 1
+    let startingDate: Date = Calendar.current.date(from: DateComponents(year: 2018)) ?? Date()
+    
     
     var body: some View {
         VStack {
@@ -93,10 +96,15 @@ struct ContentView: View {
                 .font(.headline)
                 .padding(50)
             }
+            DatePicker("select a Date", selection: $selectedDate)
+                .accentColor(Color.purple)
+                .datePickerStyle(
+                    GraphicalDatePickerStyle()
+                )
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color(.systemGray6))
-    }
+}
 }
 
 #Preview {
